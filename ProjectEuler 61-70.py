@@ -180,7 +180,40 @@ def isCyclic2Digit(num1, num2):
     return (str(num1)[-2] + str(num1)[-1]) == str(num2)[:2]
 
 
-print(isCyclic2Digit(1994, 9433))
+# print(isCyclic2Digit(1994, 9433))
+
+def get_permutations(sequence):
+    '''
+    Assumes sequence is an arbitrary string and non-empty
+    Returns: a list of strings, all the permutations of sequence
+    Example: get_permutations('abc')
+    ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
+    note: do not depend on order of the output list
+    '''
+    permutations_of_sequence = []
+    permutations_of_cutdown_sequence = []
+    # define recursive behaviour
+    # for sequence of len(n), case is sequence[0] and sequence[1:n]
+    if len(sequence) > 1:
+        first_char_sequence = sequence[0]
+        cutdown_sequence = sequence[1:]
+        # find recursions of cutdown_sequence
+        if len(cutdown_sequence) > 1:
+            permutations_of_cutdown_sequence = get_permutations(sequence[1:])
+        # base case
+        # add first_char_sequence to all recursions of cutdown_sequence
+        for i in range(len(sequence)):
+            holding_string = cutdown_sequence[:i] + first_char_sequence + cutdown_sequence[i:]
+            permutations_of_sequence += [holding_string]
+        # loop over each item in permutations_of_cutdown_sequence
+        if len(permutations_of_cutdown_sequence) > 1:
+            for ele in range(len(permutations_of_cutdown_sequence)):
+                new_cutdown_sequence = permutations_of_cutdown_sequence[ele]
+                for i in range(len(sequence)):
+                    holding_string = new_cutdown_sequence[:i] + first_char_sequence + new_cutdown_sequence[i:]
+                    permutations_of_sequence += [holding_string]
+    # remove duplicates from permutations_of_sequence
+    return list(dict.fromkeys(permutations_of_sequence))
 
 
 def cyclicalFigurateNums():
@@ -196,11 +229,50 @@ def cyclicalFigurateNums():
     hexagon_num_list = generateHexagonNums(1000, 10000)
     heptagon_num_list = generateHeptagonNums(1000, 10000)
     octagon_num_list = generateOctagonNums(1000, 10000)
-    # test for cyclic digits
-    # TODO build it
+    polygon_nums_list_list = [triangle_nums_list, square_nums_list, pentagon_num_list,
+                              hexagon_num_list, heptagon_num_list, octagon_num_list]
+    # permutations of polygon lists
+    polygon_permutations = get_permutations("012345")  # list of permutations
+    # generate list
+    pdb.set_trace()
+    for permutation in polygon_permutations:
+        reordered_polygon_nums_list_list = []
+        for digit in permutation:
+            reordered_polygon_nums_list_list.append(polygon_nums_list_list[int(digit)])
+
+    # test for cyclic  on each polygon list
+    # TODO change syntax to work with list of lists
+    # for triangle_num in triangle_nums_list:
+    #     triangle_num_start = int((str(triangle_num)[:2]))
+    #     triangle_num_end = int((str(triangle_num)[2:]))
+    #     for square_num in square_nums_list:
+    #         square_num_start = int((str(square_num)[:2]))
+    #         square_num_end = int((str(square_num)[2:]))
+    #         if triangle_num_end == square_num_start:
+    #             for pentagon_num in pentagon_num_list:
+    #                 pentagon_num_start = int((str(pentagon_num)[:2]))
+    #                 pentagon_num_end = int((str(pentagon_num)[2:]))
+    #                 if square_num_end == pentagon_num_start:
+    #                     for hexagon_num in hexagon_num_list:
+    #                         hexagon_num_start = int((str(hexagon_num)[:2]))
+    #                         hexagon_num_end = int((str(hexagon_num)[2:]))
+    #                         if pentagon_num_end == hexagon_num_start:
+    #                             for heptagon_num in heptagon_num_list:
+    #                                 heptagon_num_start = int((str(heptagon_num)[:2]))
+    #                                 heptagon_num_end = int((str(heptagon_num)[2:]))
+    #                                 if hexagon_num_end == heptagon_num_start:
+    #                                     for octagon_num in octagon_num_list:
+    #                                         octagon_num_start = int((str(octagon_num)[:2]))
+    #                                         octagon_num_end = int((str(octagon_num)[2:]))
+    #                                         if heptagon_num_end == octagon_num_start and octagon_num_end == triangle_num_start:
+    #                                             print(triangle_num, square_num, pentagon_num, hexagon_num, heptagon_num)
     pdb.set_trace()
     print("kittens")
 
-# print(cyclicalFigurateNums())
+print(cyclicalFigurateNums())
 
-# TODO make plan to find combos of polygon nums that cycle in any order.
+# # take 6 lists in any order = 720 permutations.
+
+# outer loop = take any order of lists
+
+# inner loops = test all posibilities for lists in that order
