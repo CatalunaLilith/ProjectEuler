@@ -48,23 +48,6 @@ is represented by a different number in the set.
 #     cyclic
 #     triangle, square, pentagonal, hexagonal, heptagonal, and octagonal
 
-# brute force plan to find set:
-#     make lists of 4 digit polygonal nums
-#     iterate over triangle num, for each:
-#         take last 2 digits of triangle num
-#         iterate over square nums, for each:
-#             if last 2 digits of triangle match first 2 digits of square num:
-#                 iterate over pentagon nums, for each:
-#                     if last 2 digits of square match first 2 digits of pentagon num:
-#                         iterate over hexagon nums, for each:
-#                             if last 2 digits of pentagon match first 2 digits of hexagon num:
-#                                 iterate over heptagon nums, for each:
-#                                     if last 2 digits of hexagon match first 2 digits of heptagon num:
-#                                         iterate over octagon nums, for each:
-#                                             if last 2 digits of heptagon match first 2 digits of octagon num:
-#                             return sum(set with 6 nums)
-
-
 def generateTriangleNums(lower_limit, upper_limit):
     """asssumes lower limits and upper_limit are ints,
     the lowest and highest values (inclusive) to be considered
@@ -194,6 +177,58 @@ def cyclicalFigurateNums():
         4 digits
         each is a polygonal number from triangle to octagon
     """
-    pass
+    # initialize lists of 4 digit polygon numbers
+    triangle_nums_list = generateTriangleNums(1000, 10000)
+    square_nums_list = generateSquareNums(1000, 10000)
+    pentagon_num_list = generatePentagonNums(1000, 10000)
+    hexagon_num_list = generateHexagonNums(1000, 10000)
+    heptagon_num_list =generateHeptagonNums(1000, 10000)
+    octagon_num_list = generateOctagonNums(1000, 10000)
+    # test for cyclic digits
+    for triangle_num in triangle_nums_list:
+        triangle_num_start = int((str(triangle_num)[:2]))
+        triangle_num_end = int((str(triangle_num)[2:]))
+        for square_num in square_nums_list:
+            square_num_start = int((str(square_num)[:2]))
+            square_num_end = int((str(square_num)[2:]))
+            if triangle_num_end == square_num_start:
+                for pentagon_num in pentagon_num_list:
+                    pentagon_num_start = int((str(pentagon_num)[:2]))
+                    pentagon_num_end = int((str(pentagon_num)[2:]))
+                    if square_num_end == pentagon_num_start:
+                        for hexagon_num in hexagon_num_list:
+                            hexagon_num_start = int((str(hexagon_num)[:2]))
+                            hexagon_num_end = int((str(hexagon_num)[2:]))
+                            if pentagon_num_end == hexagon_num_start:
+                                for heptagon_num in heptagon_num_list:
+                                    heptagon_num_start = int((str(heptagon_num)[:2]))
+                                    heptagon_num_end = int((str(heptagon_num)[2:]))
+                                    if hexagon_num_end == heptagon_num_start:
+                                        for octagon_num in octagon_num_list:
+                                            octagon_num_start = int((str(octagon_num)[:2]))
+                                            octagon_num_end = int((str(octagon_num)[2:]))
+                                            if heptagon_num_end == octagon_num_start and octagon_num_end == triangle_num_start:
+                                                print(triangle_num, square_num, pentagon_num, hexagon_num, heptagon_num)
+    # pdb.set_trace()
+    print("kittens")
 
 
+# TODO figure out why not work
+    # check code for typos
+    # check if solutions have to be in order of increasing polygonality
+print(cyclicalFigurateNums())
+# brute force plan to find set:
+#     make lists of 4 digit polygonal nums
+#     iterate over triangle num, for each:
+#         take last 2 digits of triangle num
+#         iterate over square nums, for each:
+#             if last 2 digits of triangle match first 2 digits of square num:
+#                 iterate over pentagon nums, for each:
+#                     if last 2 digits of square match first 2 digits of pentagon num:
+#                         iterate over hexagon nums, for each:
+#                             if last 2 digits of pentagon match first 2 digits of hexagon num:
+#                                 iterate over heptagon nums, for each:
+#                                     if last 2 digits of hexagon match first 2 digits of heptagon num:
+#                                         iterate over octagon nums, for each:
+#                                             if last 2 digits of heptagon match first 2 digits of octagon num:
+#                             return sum(set with 6 nums)
