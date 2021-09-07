@@ -57,16 +57,17 @@ def generateTriangleNums(lower_limit, upper_limit):
     """
     triangle_num_list = []
     i = int(lower_limit**0.5)
-    triangle_num = 1
+    triangle_num = 0
     while triangle_num <= upper_limit:
-        if triangle_num >= lower_limit:
+        triangle_num = int(i*(i+1)/2)
+        if triangle_num >= lower_limit and triangle_num <= upper_limit:
             triangle_num_list.append(triangle_num)
         triangle_num = int(i*(i+1)/2)
         i += 1
     return triangle_num_list
 
 
-# generateTriangleNums(20, 100)
+# generateTriangleNums(0, 100)
 
 
 def generateSquareNums(lower_limit, upper_limit):
@@ -79,9 +80,9 @@ def generateSquareNums(lower_limit, upper_limit):
     i = int(lower_limit**0.5)
     square_num = 0
     while square_num <= upper_limit:
-        if square_num >= lower_limit:
-            square_num_list.append(square_num)
         square_num = int(i**2)
+        if square_num >= lower_limit and square_num <= upper_limit:
+            square_num_list.append(square_num)
         i += 1
     return square_num_list
 
@@ -97,10 +98,10 @@ def generatePentagonNums(lower_limit, upper_limit):
     in acending order
     """
     pentagon_num_list = []
-    i = int(lower_limit**0.5)
+    i = int(lower_limit**0.5)/2
     pentagon_num = 0
     while pentagon_num <= upper_limit:
-        if pentagon_num >= lower_limit:
+        if pentagon_num >= lower_limit and pentagon_num <= upper_limit:
             pentagon_num_list.append(pentagon_num)
         pentagon_num = int(i*((3*i)-1)/2)
         i += 1
@@ -118,10 +119,10 @@ def generateHexagonNums(lower_limit, upper_limit):
     in acending order
     """
     hexagon_num_list = []
-    i = int(lower_limit**0.5)
+    i = int(lower_limit**0.5)/2
     hexagon_num = 0
     while hexagon_num <= upper_limit:
-        if hexagon_num >= lower_limit:
+        if hexagon_num >= lower_limit and hexagon_num <= upper_limit:
             hexagon_num_list.append(hexagon_num)
         hexagon_num = int(i*((2*i)-1))
         i += 1
@@ -138,10 +139,10 @@ def generateHeptagonNums(lower_limit, upper_limit):
     in acending order
     """
     heptagon_num_list = []
-    i = int(lower_limit**0.5)
+    i = int(lower_limit**0.5)/2
     heptagon_num = 0
     while heptagon_num <= upper_limit:
-        if heptagon_num >= lower_limit:
+        if heptagon_num >= lower_limit and heptagon_num <= upper_limit:
             heptagon_num_list.append(heptagon_num)
         heptagon_num = int(i*((5*i)-3)/2)
         i += 1
@@ -159,10 +160,10 @@ def generateOctagonNums(lower_limit, upper_limit):
     in acending order
     """
     octagon_num_list = []
-    i = int(lower_limit**0.5)
+    i = int(lower_limit**0.5)/2
     octagon_num = 0
     while octagon_num <= upper_limit:
-        if octagon_num >= lower_limit:
+        if octagon_num >= lower_limit and octagon_num <= upper_limit:
             octagon_num_list.append(octagon_num)
         octagon_num = int(i*((3*i)-2))
         i += 1
@@ -268,10 +269,14 @@ def cyclicalFigurateNums():
     print("kittens")
     return sum(num_set)
 
-print(cyclicalFigurateNums())
+# print(cyclicalFigurateNums())
 
-# # take 6 lists in any order = 720 permutations.
+# pdb.set_trace()
+triangle_nums_list = generateTriangleNums(0, 1431)
+square_nums_list = generateSquareNums(1000, 10000)
+pentagon_num_list = generatePentagonNums(1000, 10000)
+hexagon_num_list = generateHexagonNums(1000, 10000)
+heptagon_num_list = generateHeptagonNums(1000, 10000)
+octagon_num_list = generateOctagonNums(1000, 10000)
 
-# outer loop = take any order of lists
-
-# inner loops = test all posibilities for lists in that order
+triange_list = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300, 325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630, 666, 703, 741, 780, 820, 861, 903, 946, 990, 1035, 1081, 1128, 1176, 1225, 1275, 1326, 1378, 1431]
