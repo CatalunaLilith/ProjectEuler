@@ -98,12 +98,12 @@ def generatePentagonNums(lower_limit, upper_limit):
     in acending order
     """
     pentagon_num_list = []
-    i = int(lower_limit**0.5)/2
+    i = int((lower_limit**0.5)/2)
     pentagon_num = 0
     while pentagon_num <= upper_limit:
+        pentagon_num = int(i*((3*i)-1)/2)
         if pentagon_num >= lower_limit and pentagon_num <= upper_limit:
             pentagon_num_list.append(pentagon_num)
-        pentagon_num = int(i*((3*i)-1)/2)
         i += 1
     return pentagon_num_list
 
@@ -119,12 +119,12 @@ def generateHexagonNums(lower_limit, upper_limit):
     in acending order
     """
     hexagon_num_list = []
-    i = int(lower_limit**0.5)/2
+    i = int((lower_limit**0.5)/2)
     hexagon_num = 0
     while hexagon_num <= upper_limit:
+        hexagon_num = int(i*((2*i)-1))
         if hexagon_num >= lower_limit and hexagon_num <= upper_limit:
             hexagon_num_list.append(hexagon_num)
-        hexagon_num = int(i*((2*i)-1))
         i += 1
     return hexagon_num_list
 
@@ -139,12 +139,12 @@ def generateHeptagonNums(lower_limit, upper_limit):
     in acending order
     """
     heptagon_num_list = []
-    i = int(lower_limit**0.5)/2
+    i = int((lower_limit**0.5)/2)
     heptagon_num = 0
     while heptagon_num <= upper_limit:
+        heptagon_num = int(i*((5*i)-3)/2)
         if heptagon_num >= lower_limit and heptagon_num <= upper_limit:
             heptagon_num_list.append(heptagon_num)
-        heptagon_num = int(i*((5*i)-3)/2)
         i += 1
     return heptagon_num_list
 
@@ -160,12 +160,12 @@ def generateOctagonNums(lower_limit, upper_limit):
     in acending order
     """
     octagon_num_list = []
-    i = int(lower_limit**0.5)/2
+    i = int((lower_limit**0.5)/2)
     octagon_num = 0
     while octagon_num <= upper_limit:
+        octagon_num = int(i*((3*i)-2))
         if octagon_num >= lower_limit and octagon_num <= upper_limit:
             octagon_num_list.append(octagon_num)
-        octagon_num = int(i*((3*i)-2))
         i += 1
     return octagon_num_list
 
@@ -230,7 +230,6 @@ def cyclicalFigurateNums():
     hexagon_num_list = generateHexagonNums(1000, 10000)
     heptagon_num_list = generateHeptagonNums(1000, 10000)
     octagon_num_list = generateOctagonNums(1000, 10000)
-    pdb.set_trace()
     polygon_nums_list_list = [triangle_nums_list, square_nums_list, pentagon_num_list,
                               hexagon_num_list, heptagon_num_list, octagon_num_list]
     # permutations of polygon lists
@@ -269,14 +268,13 @@ def cyclicalFigurateNums():
     print("kittens")
     return sum(num_set)
 
-# print(cyclicalFigurateNums())
+print(cyclicalFigurateNums())
 
-# pdb.set_trace()
-triangle_nums_list = generateTriangleNums(0, 1431)
-square_nums_list = generateSquareNums(1000, 10000)
-pentagon_num_list = generatePentagonNums(1000, 10000)
-hexagon_num_list = generateHexagonNums(1000, 10000)
-heptagon_num_list = generateHeptagonNums(1000, 10000)
-octagon_num_list = generateOctagonNums(1000, 10000)
+# triangle_nums_list = generateTriangleNums(0, 1431)
+# square_nums_list = generateSquareNums(1000, 10000)
+# pentagon_num_list = generatePentagonNums(1,4187)
+# hexagon_num_list = generateHexagonNums(1000, 10000)
+# heptagon_num_list = generateHeptagonNums(1000, 10000)
+# octagon_num_list = generateOctagonNums(1000, 10000)
 
-triange_list = [0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171, 190, 210, 231, 253, 276, 300, 325, 351, 378, 406, 435, 465, 496, 528, 561, 595, 630, 666, 703, 741, 780, 820, 861, 903, 946, 990, 1035, 1081, 1128, 1176, 1225, 1275, 1326, 1378, 1431]
+# pentagonal_list = [1, 5, 12, 22, 35, 51, 70, 92, 117, 145, 176, 210, 247, 287, 330, 376, 425, 477, 532, 590, 651, 715, 782, 852, 925, 1001, 1080, 1162, 1247, 1335, 1426, 1520, 1617, 1717, 1820, 1926, 2035, 2147, 2262, 2380, 2501, 2625, 2752, 2882, 3015, 3151, 3290, 3432, 3577, 3725, 3876, 4030, 4187]
