@@ -229,6 +229,7 @@ def cyclicalFigurateNums():
     hexagon_num_list = generateHexagonNums(1000, 10000)
     heptagon_num_list = generateHeptagonNums(1000, 10000)
     octagon_num_list = generateOctagonNums(1000, 10000)
+    pdb.set_trace()
     polygon_nums_list_list = [triangle_nums_list, square_nums_list, pentagon_num_list,
                               hexagon_num_list, heptagon_num_list, octagon_num_list]
     # permutations of polygon lists
@@ -239,7 +240,6 @@ def cyclicalFigurateNums():
         for digit in permutation:
             reordered_polygon_nums_list_list.append(polygon_nums_list_list[int(digit)])
         # test for cyclic  on each polygon list
-        # TODO change syntax to work with list of lists
         for num_0 in reordered_polygon_nums_list_list[0]:
             num_0_start = int((str(num_0)[:2]))
             num_0_end = int((str(num_0)[2:]))
@@ -263,9 +263,10 @@ def cyclicalFigurateNums():
                                                 num_5_start = int((str(num_5)[:2]))
                                                 num_5_end = int((str(num_5)[2:]))
                                                 if num_4_end == num_5_start and num_5_end == num_0_start:
-                                                    print(num_0, num_1, num_2, num_3, num_4, num_5)
-    # pdb.set_trace()
+                                                    num_set = (num_0, num_1, num_2, num_3, num_4, num_5)
+                                                    print(num_set)
     print("kittens")
+    return sum(num_set)
 
 print(cyclicalFigurateNums())
 
