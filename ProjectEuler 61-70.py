@@ -232,41 +232,39 @@ def cyclicalFigurateNums():
     polygon_nums_list_list = [triangle_nums_list, square_nums_list, pentagon_num_list,
                               hexagon_num_list, heptagon_num_list, octagon_num_list]
     # permutations of polygon lists
-    polygon_permutations = get_permutations("012345")  # list of permutations
+    polygon_permutations = get_permutations("012345")
     # generate list
-    pdb.set_trace()
     for permutation in polygon_permutations:
         reordered_polygon_nums_list_list = []
         for digit in permutation:
             reordered_polygon_nums_list_list.append(polygon_nums_list_list[int(digit)])
-
-    # test for cyclic  on each polygon list
-    # TODO change syntax to work with list of lists
-    # for triangle_num in triangle_nums_list:
-    #     triangle_num_start = int((str(triangle_num)[:2]))
-    #     triangle_num_end = int((str(triangle_num)[2:]))
-    #     for square_num in square_nums_list:
-    #         square_num_start = int((str(square_num)[:2]))
-    #         square_num_end = int((str(square_num)[2:]))
-    #         if triangle_num_end == square_num_start:
-    #             for pentagon_num in pentagon_num_list:
-    #                 pentagon_num_start = int((str(pentagon_num)[:2]))
-    #                 pentagon_num_end = int((str(pentagon_num)[2:]))
-    #                 if square_num_end == pentagon_num_start:
-    #                     for hexagon_num in hexagon_num_list:
-    #                         hexagon_num_start = int((str(hexagon_num)[:2]))
-    #                         hexagon_num_end = int((str(hexagon_num)[2:]))
-    #                         if pentagon_num_end == hexagon_num_start:
-    #                             for heptagon_num in heptagon_num_list:
-    #                                 heptagon_num_start = int((str(heptagon_num)[:2]))
-    #                                 heptagon_num_end = int((str(heptagon_num)[2:]))
-    #                                 if hexagon_num_end == heptagon_num_start:
-    #                                     for octagon_num in octagon_num_list:
-    #                                         octagon_num_start = int((str(octagon_num)[:2]))
-    #                                         octagon_num_end = int((str(octagon_num)[2:]))
-    #                                         if heptagon_num_end == octagon_num_start and octagon_num_end == triangle_num_start:
-    #                                             print(triangle_num, square_num, pentagon_num, hexagon_num, heptagon_num)
-    pdb.set_trace()
+        # test for cyclic  on each polygon list
+        # TODO change syntax to work with list of lists
+        for num_0 in reordered_polygon_nums_list_list[0]:
+            num_0_start = int((str(num_0)[:2]))
+            num_0_end = int((str(num_0)[2:]))
+            for num_1 in reordered_polygon_nums_list_list[1]:
+                num_1_start = int((str(num_1)[:2]))
+                num_1_end = int((str(num_1)[2:]))
+                if num_0_end == num_1_start:
+                    for num_2 in reordered_polygon_nums_list_list[2]:
+                        num_2_start = int((str(num_2)[:2]))
+                        num_2_end = int((str(num_2)[2:]))
+                        if num_1_end == num_2_start:
+                            for num_3 in reordered_polygon_nums_list_list[3]:
+                                num_3_start = int((str(num_3)[:2]))
+                                num_3_end = int((str(num_3)[2:]))
+                                if num_2_end == num_3_start:
+                                    for num_4 in reordered_polygon_nums_list_list[4]:
+                                        num_4_start = int((str(num_4)[:2]))
+                                        num_4_end = int((str(num_4)[2:]))
+                                        if num_3_end == num_4_start:
+                                            for num_5 in reordered_polygon_nums_list_list[5]:
+                                                num_5_start = int((str(num_5)[:2]))
+                                                num_5_end = int((str(num_5)[2:]))
+                                                if num_4_end == num_5_start and num_5_end == num_0_start:
+                                                    print(num_0, num_1, num_2, num_3, num_4, num_5)
+    # pdb.set_trace()
     print("kittens")
 
 print(cyclicalFigurateNums())
