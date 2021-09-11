@@ -204,14 +204,16 @@ def get_permutations(sequence):
         # base case
         # add first_char_sequence to all recursions of cutdown_sequence
         for i in range(len(sequence)):
-            holding_string = cutdown_sequence[:i] + first_char_sequence + cutdown_sequence[i:]
+            holding_string = cutdown_sequence[:i] + first_char_sequence\
+                + cutdown_sequence[i:]
             permutations_of_sequence += [holding_string]
         # loop over each item in permutations_of_cutdown_sequence
         if len(permutations_of_cutdown_sequence) > 1:
             for ele in range(len(permutations_of_cutdown_sequence)):
                 new_cutdown_sequence = permutations_of_cutdown_sequence[ele]
                 for i in range(len(sequence)):
-                    holding_string = new_cutdown_sequence[:i] + first_char_sequence + new_cutdown_sequence[i:]
+                    holding_string = new_cutdown_sequence[:i] +\
+                        first_char_sequence + new_cutdown_sequence[i:]
                     permutations_of_sequence += [holding_string]
     # remove duplicates from permutations_of_sequence
     return list(dict.fromkeys(permutations_of_sequence))
@@ -262,19 +264,57 @@ def cyclicalFigurateNums():
                                             for num_5 in reordered_polygon_nums_list_list[5]:
                                                 num_5_start = int((str(num_5)[:2]))
                                                 num_5_end = int((str(num_5)[2:]))
-                                                if num_4_end == num_5_start and num_5_end == num_0_start:
-                                                    num_set = (num_0, num_1, num_2, num_3, num_4, num_5)
+                                                if num_4_end == num_5_start and\
+                                                    num_5_end == num_0_start:
+                                                    num_set = (num_0, num_1, num_2,
+                                                               num_3, num_4, num_5)
                                                     print(num_set)
-    print("kittens")
     return sum(num_set)
 
-print(cyclicalFigurateNums())
+# print(cyclicalFigurateNums())
 
-# triangle_nums_list = generateTriangleNums(0, 1431)
-# square_nums_list = generateSquareNums(1000, 10000)
-# pentagon_num_list = generatePentagonNums(1,4187)
-# hexagon_num_list = generateHexagonNums(1000, 10000)
-# heptagon_num_list = generateHeptagonNums(1000, 10000)
-# octagon_num_list = generateOctagonNums(1000, 10000)
 
-# pentagonal_list = [1, 5, 12, 22, 35, 51, 70, 92, 117, 145, 176, 210, 247, 287, 330, 376, 425, 477, 532, 590, 651, 715, 782, 852, 925, 1001, 1080, 1162, 1247, 1335, 1426, 1520, 1617, 1717, 1820, 1926, 2035, 2147, 2262, 2380, 2501, 2625, 2752, 2882, 3015, 3151, 3290, 3432, 3577, 3725, 3876, 4030, 4187]
+"""
+Problem 62
+The cube, 41063625 (345**3), can be permuted to produce two other cubes:
+    56623104 (384**3) and 66430125 (405**3).
+    41063625 is the smallest cube which has
+    exactly three permutations of its digits which are also cube.
+
+Find the smallest cube for which exactly five permutations of its digits are cube.
+"""
+
+# goal = find smallest int that is
+#     cube
+#     can permuate 5 diffrent ways to also be cube
+
+# option 1:
+#     iterate over ints, for each:
+#         cube = i**3
+#         take permutations of cube
+#         test if each permutation is a cube
+#         estimated computing time based on three permutation example:
+#             40320 permutations for an 8 digit number, times 345 numbers to find
+#             13910400 total permutations
+
+# option 2:
+#     generate list of cubes
+#     test if each generated cube is a permutation of another in list, keep count
+#     (write isPermutation(string1, string2))
+#     estimated computing time based on three permutation example:
+#          for 345 numbers, times up to 345 checks each
+#           119025 total permutations
+
+
+def isPermutation(string1, string2):
+    """assumes string1 and string 2 are strings
+    returns True if string1 and string2 are permutations of each other, else False
+    """
+    char_list1 = sorted(string1)
+    char_list2 = sorted(string2)
+    return char_list1 == char_list2
+
+
+print(isPermutation("art", "rat"))
+print(isPermutation("artt", "rat"))
+print(isPermutation("cats", "art"))
