@@ -264,8 +264,7 @@ def cyclicalFigurateNums():
                                             for num_5 in reordered_polygon_nums_list_list[5]:
                                                 num_5_start = int((str(num_5)[:2]))
                                                 num_5_end = int((str(num_5)[2:]))
-                                                if num_4_end == num_5_start and\
-                                                    num_5_end == num_0_start:
+                                                if num_4_end == num_5_start and num_5_end == num_0_start:
                                                     num_set = (num_0, num_1, num_2,
                                                                num_3, num_4, num_5)
                                                     print(num_set)
@@ -284,27 +283,6 @@ The cube, 41063625 (345**3), can be permuted to produce two other cubes:
 Find the smallest cube for which exactly five permutations of its digits are cube.
 """
 
-# goal = find smallest int that is
-#     cube
-#     can permuate 5 diffrent ways to also be cube
-
-# option 1:
-#     iterate over ints, for each:
-#         cube = i**3
-#         take permutations of cube
-#         test if each permutation is a cube
-#         estimated computing time based on three permutation example:
-#             40320 permutations for an 8 digit number, times 345 numbers to find
-#             13910400 total permutations
-
-# option 2:
-#     generate list of cubes
-#     test if each generated cube is a permutation of another in list, keep count
-#     (write isPermutation(string1, string2))
-#     estimated computing time based on three permutation example:
-#          for 345 numbers, times up to 345 checks each
-#           119025 total permutations
-
 
 def isPermutation(string1, string2):
     """assumes string1 and string 2 are strings
@@ -315,6 +293,66 @@ def isPermutation(string1, string2):
     return char_list1 == char_list2
 
 
-print(isPermutation("art", "rat"))
-print(isPermutation("artt", "rat"))
-print(isPermutation("cats", "art"))
+# print(isPermutation("art", "rat"))
+# print(isPermutation("artt", "rat"))
+# print(isPermutation("cats", "art"))
+
+
+def cubicPermutationsv1():
+    """returns an int,
+    the smallest cube that has five permutations of its digits that are cubes
+    """
+    cubes_list = []
+    for i in range(1000000):
+        cube = i**3
+        cube_permutations = get_permutations(str(cube))
+        cube_permutations_count = 0
+        for permutation in cube_permutations:
+            if permutation in cubes_list:
+                cube_permutations_count += 1
+            if cube_permutations_count == 5:
+                return cube
+        print(cube, cube_permutations_count)  # TODO remove
+        cubes_list.append(str(cube))
+
+
+# cubicPermutationsv1()  # force stoped after over 10 minutes of running
+
+
+def sortStrictlyIncreasing(num):
+    """assumes num is an int
+    returns an int, the num with it's digits in strictly increasing order
+    e.g. sortStrictlyIncreasing(5284) -> 2458
+    """
+    return "".join(sorted([digit for digit in str(num)]))
+
+
+# print(sortStrictlyIncreasing(5284))
+
+
+def cubicPermutations():
+    """returns an int,
+    the smallest cube that has five permutations of its digits that are cubes
+    """
+    cubes_dict = {}
+    for i in range(1000000):
+        cube = i**3
+        strictly_increasing_cube = sortStrictlyIncreasing(cube)
+        if strictly_increasing_cube in cubes_dict:
+            cubes_dict[strictly_increasing_cube].append(cube)
+            if len(cubes_dict[strictly_increasing_cube]) == 5:
+                return min(cubes_dict[strictly_increasing_cube])
+        else:
+            cubes_dict[strictly_increasing_cube] = [cube]
+
+
+# print(cubicPermutationsv())
+
+
+"""
+problem 63
+The 5-digit number, 16807=7**5, is also a fifth power.
+Similarly, the 9-digit number, 134217728=8**9, is a ninth power.
+
+How many n-digit positive integers exist which are also an nth power?
+"""
