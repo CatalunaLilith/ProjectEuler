@@ -301,6 +301,7 @@ def isPermutation(string1, string2):
 def cubicPermutationsv1():
     """returns an int,
     the smallest cube that has five permutations of its digits that are cubes
+    very slow, not recommended
     """
     cubes_list = []
     for i in range(1000000):
@@ -312,7 +313,6 @@ def cubicPermutationsv1():
                 cube_permutations_count += 1
             if cube_permutations_count == 5:
                 return cube
-        print(cube, cube_permutations_count)  # TODO remove
         cubes_list.append(str(cube))
 
 
@@ -356,3 +356,20 @@ Similarly, the 9-digit number, 134217728=8**9, is a ninth power.
 
 How many n-digit positive integers exist which are also an nth power?
 """
+
+# option1:
+# for base:
+#     for exponent:
+#         power =  base**exponent
+#         if len(power) == exponent:
+#             count += 1
+# problems:
+#     when to stop?
+#     how to balance int1 and int2 for efficiency?
+
+# option2:
+# for power:
+#     for root:
+#         base = power***(1/root)
+#         if len(round(base)) isInteger():
+#             count += 1
