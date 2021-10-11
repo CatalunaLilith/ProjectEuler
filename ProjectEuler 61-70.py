@@ -378,4 +378,22 @@ How many n-digit positive integers exist which are also an nth power?
 #     note that
 #     len(power) == exponent
 #     is equivalent to
-#     10**(n-1) <= x**n <= 10***n
+#     10**(n-1) <= x**n < 10***n
+
+# lower bound 10(n-1)/n <= x
+# upper bound x <= 10
+
+
+def powerfulDigitCounts():
+    """returns an int,
+    the number of n-digit positive integers exist which are also an nth power"""
+    result = 0
+    upper_bound = 10
+    for n in range(1,1000000000):
+        lower_bound = math. ceil(10**((n-1)/n))
+        result += 10 - lower_bound
+        if lower_bound >= upper_bound:
+            return result
+
+
+print(powerfulDigitCounts())
