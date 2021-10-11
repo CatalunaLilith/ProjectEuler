@@ -373,3 +373,9 @@ How many n-digit positive integers exist which are also an nth power?
 #         base = power***(1/root)
 #         if len(round(base)) isInteger():
 #             count += 1
+
+# options 3:
+#     note that
+#     len(power) == exponent
+#     is equivalent to
+#     10**(n-1) <= x**n <= 10***n
