@@ -357,43 +357,25 @@ Similarly, the 9-digit number, 134217728=8**9, is a ninth power.
 How many n-digit positive integers exist which are also an nth power?
 """
 
-# option1:
-# for base:
-#     for exponent:
-#         power =  base**exponent
-#         if len(power) == exponent:
-#             count += 1
-# problems:
-#     when to stop?
-#     how to balance int1 and int2 for efficiency?
-
-# option2:
-# for power:
-#     for root:
-#         base = power***(1/root)
-#         if len(round(base)) isInteger():
-#             count += 1
-
-# options 3:
-#     note that
-#     len(power) == exponent
-#     is equivalent to
-#     10**(n-1) <= x**n < 10***n
-
-# lower bound 10(n-1)/n <= x
-# upper bound x <= 10
-
 
 def powerfulDigitCounts():
     """returns an int,
     the number of n-digit positive integers exist which are also an nth power"""
     result = 0
     upper_bound = 10
-    for n in range(1,1000000000):
+    for n in range(1, 1000000000):  # arbitrarily high loop, will self-stop
         lower_bound = math. ceil(10**((n-1)/n))
         result += 10 - lower_bound
         if lower_bound >= upper_bound:
             return result
 
 
-print(powerfulDigitCounts())
+# print(powerfulDigitCounts())
+
+
+"""
+problem 63
+Exactly four continued fractions, for N<13 have an odd period.
+
+How many continued fractions for N<10000 have an odd period?
+"""
